@@ -1,4 +1,4 @@
-<!-- hotel array data -->
+<!-- HOTEL ARRAY -->
 <?php
 $hotels = [
 
@@ -68,6 +68,16 @@ $hotels = [
 
 <body>
     <h1>HOTELS</h1>
+
+    <table class="table table-striped table-dark">
+
+        <thead>
+            <tr>
+                <?php foreach ($hotels[0] as $key => $value) { ?>
+                    <th scope="col"><?php echo $key; ?></th>
+                <?php } ?>
+            </tr>
+        </thead>
 
 </body>
 </html>
