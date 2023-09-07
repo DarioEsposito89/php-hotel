@@ -1,4 +1,5 @@
 <?php
+// ARRAY HOTELS
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
@@ -37,6 +38,7 @@ $hotels = [
     ],
 ];
 
+// Condizione per filtro parking
 if (isset($_GET['parking']) && !empty($_GET['parking'])) {
     if ($_GET['parking'] == 'true') {
         $hotels = array_filter($hotels, fn ($value) => $value['parking']);
@@ -44,6 +46,7 @@ if (isset($_GET['parking']) && !empty($_GET['parking'])) {
         $hotels = array_filter($hotels, fn ($value) => !$value['parking']);
     };
 };
+// Condizione per filtro vote
 if (isset($_GET['vote']) && !empty($_GET['vote'])) {
     $hotels = array_filter($hotels, fn ($value) => $value['vote'] >= $_GET['vote']);
 };
@@ -64,12 +67,16 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
 
 <body>
     <h1>HOTEL LIST</h1>
+
+    <!-- Form con filtri -->
     <form class="d-flex mt-5" action="index.php">
+        <!-- Select parking -->
         <select name="parking" id="parking" class="form-select w-25 bg-black text-white">
             <option value="" selected>Parking</option>
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
+        <!-- Select Vote -->
         <select name="vote" id="vote" class="form-select w-25 bg-black text-white mx-3">
             <option value="" selected>Vote</option>
             <option value="1">1</option>
@@ -80,6 +87,8 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
         </select>
         <button type="submit" class="btn btn-dark">Search</button>
     </form>
+
+    <!-- Tabella HOTELS -->
     <table class="table table-hover">
         <thead>
             <tr>
@@ -92,6 +101,7 @@ if (isset($_GET['vote']) && !empty($_GET['vote'])) {
             </tr>
         </thead>
 
+        <!-- Ciclo foreach per ciclare l'Array nella tabella -->
         <?php foreach ($hotels as $key => $hotel) {
             $name = $hotel['name'];
             $description = $hotel['description'];
